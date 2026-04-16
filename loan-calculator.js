@@ -121,10 +121,13 @@ function calculate() {
   totalCostOverTermDisplay.textContent = formatCurrency(totalCostOverTerm);
 }
 
-[amountInput, termMonthsInput, interestRateInput, repaymentModeInput].forEach((element) => {
-  element.addEventListener('input', calculate);
-  element.addEventListener('change', calculate);
+[amountInput, termMonthsInput, interestRateInput].forEach((el) => {
+  el.addEventListener('input', calculate);
+  el.addEventListener('change', calculate);
 });
+
+// select/dropdown should only use 'change'
+repaymentModeInput.addEventListener('change', calculate);
 
 valuationFeeTextDisplay.textContent =
   `As charged by our Panel Valuer, plus an assessment fee of ${formatCurrency(VALUATION_ASSESSMENT_FEE)}.`;
