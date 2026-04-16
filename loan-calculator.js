@@ -68,20 +68,20 @@ function calculate() {
 
   errorMessageDisplay.textContent = '';
 
-  const monthlyInterest = amount * (interestRate / 100) / 12;
-  const monthlyCompliance = amount * (COMPLIANCE_RATE_MONTHLY_PERCENT / 100);
+  const monthlyInterestPayment = amount * (interestRate / 100) / 12;
+  const monthlyComplianceFee = amount * (COMPLIANCE_RATE_MONTHLY_PERCENT / 100);
   const approvalFee = amount * (APPROVAL_RATE_PERCENT / 100);
   const upfrontFeesTotal = approvalFee + DOCUMENTATION_FEE + SEARCH_FEE + VALUATION_ASSESSMENT_FEE;
-  const totalComplianceOverTerm = monthlyCompliance * termMonths;
+  const totalComplianceOverTerm = monthlyComplianceFee * termMonths;
   let totalInterestOverTerm = 0;
 
   if (repaymentMode === 'interestOnly') {
-    const monthlyRepayment = monthlyInterest + monthlyCompliance;
-    totalInterestOverTerm = monthlyInterest * termMonths;
+    const monthlyRepayment = monthlyInterestPayment + monthlyComplianceFee;
+    totalInterestOverTerm = monthlyInterestPayment * termMonths;
 
     repaymentsDisplay.textContent =
       `${formatCurrency(monthlyRepayment)} per month ` +
-      `(Interest ${formatCurrency(monthlyInterest)} + Compliance ${formatCurrency(monthlyCompliance)})`;
+      `(Interest ${formatCurrency(monthlyInterestPayment)} + Compliance ${formatCurrency(monthlyComplianceFee)})`;
     hideInterestRetainedFields();
   } else {
     // Simple interest (Option A): principal × annual rate × time in years.
@@ -100,7 +100,7 @@ function calculate() {
     `${formatCurrency(upfrontFeesTotal)} (Approval ${formatCurrency(approvalFee)} + Documentation ${formatCurrency(DOCUMENTATION_FEE)} + Search ${formatCurrency(SEARCH_FEE)} + Valuation Assessment ${formatCurrency(VALUATION_ASSESSMENT_FEE)})`;
 
   totalComplianceOverTermDisplay.textContent =
-    `${formatCurrency(totalComplianceOverTerm)} (${formatCurrency(monthlyCompliance)} per month at ${formatPercent(COMPLIANCE_RATE_MONTHLY_PERCENT)})`;
+    `${formatCurrency(totalComplianceOverTerm)} (${formatCurrency(monthlyComplianceFee)} per month at ${formatPercent(COMPLIANCE_RATE_MONTHLY_PERCENT)})`;
 
   totalInterestOverTermDisplay.textContent = formatCurrency(totalInterestOverTerm);
   totalCostOverTermDisplay.textContent = formatCurrency(totalCostOverTerm);
