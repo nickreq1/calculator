@@ -103,8 +103,7 @@ function calculate() {
     totalInterestOverTerm = amount * (interestRate / 100) * (termMonths / 12);
     const netAdvancedAmount = amount - totalInterestOverTerm;
 
-    repaymentsDisplay.textContent =
-      `Interest retained upfront. Monthly compliance fee still applies (${formatCurrency(monthlyComplianceFee)}).`;
+    repaymentsDisplay.textContent = '';
     showInterestRetainedFields();
     retainedInterestAmountDisplay.textContent = formatCurrency(totalInterestOverTerm);
     netAdvancedAmountDisplay.textContent = formatCurrency(netAdvancedAmount);
