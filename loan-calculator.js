@@ -5,6 +5,7 @@ const SEARCH_FEE = 165;
 const VALUATION_ASSESSMENT_FEE = 110;
 
 const amountInput = document.getElementById('amount');
+const amountLabel = document.getElementById('amountLabel');
 const termMonthsInput = document.getElementById('termMonths');
 const interestRateInput = document.getElementById('interestRate');
 const repaymentModeInput = document.getElementById('repaymentMode');
@@ -50,6 +51,16 @@ function showInterestRetainedFields() {
   netAdvancedAmountDisplay.classList.remove('hidden');
 }
 
+function hideAmountField() {
+  amountLabel.classList.add('hidden');
+  amountInput.classList.add('hidden');
+}
+
+function showAmountField() {
+  amountLabel.classList.remove('hidden');
+  amountInput.classList.remove('hidden');
+}
+
 function calculate() {
   const amount = Number(amountInput.value);
   const termMonths = Number(termMonthsInput.value);
@@ -64,6 +75,7 @@ function calculate() {
     totalInterestOverTermDisplay.textContent = '-';
     totalCostOverTermDisplay.textContent = '-';
     hideInterestRetainedFields();
+    showAmountField();
     return;
   }
 
@@ -77,6 +89,7 @@ function calculate() {
   let totalInterestOverTerm = 0;
 
   if (repaymentMode === 'interestOnly') {
+    showAmountField();
     const monthlyRepayment = monthlyInterestPayment + monthlyComplianceFee;
     totalInterestOverTerm = monthlyInterestPayment * termMonths;
 
@@ -85,6 +98,7 @@ function calculate() {
       `(Interest ${formatCurrency(monthlyInterestPayment)} + Compliance ${formatCurrency(monthlyComplianceFee)})`;
     hideInterestRetainedFields();
   } else {
+    hideAmountField();
     // Simple interest (Option A): principal × annual rate × time in years.
     totalInterestOverTerm = amount * (interestRate / 100) * (termMonths / 12);
     const netAdvancedAmount = amount - totalInterestOverTerm;
