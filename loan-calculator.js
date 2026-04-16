@@ -16,6 +16,7 @@ const totalInterestOverTermDisplay = document.getElementById('totalInterestOverT
 const totalCostOverTermDisplay = document.getElementById('totalCostOverTerm');
 const retainedInterestAmountDisplay = document.getElementById('retainedInterestAmount');
 const netAdvancedAmountDisplay = document.getElementById('netAdvancedAmount');
+const valuationFeeTextDisplay = document.getElementById('valuationFeeText');
 const retainedInterestLabel = document.getElementById('interestRetainedLabel');
 const netAdvancedLabel = document.getElementById('netAdvancedLabel');
 const errorMessageDisplay = document.getElementById('errorMessage');
@@ -88,7 +89,8 @@ function calculate() {
     totalInterestOverTerm = amount * (interestRate / 100) * (termMonths / 12);
     const netAdvancedAmount = amount - totalInterestOverTerm;
 
-    repaymentsDisplay.textContent = `Interest retained upfront. No monthly repayment required.`;
+    repaymentsDisplay.textContent =
+      `Interest retained upfront. Monthly compliance fee still applies.`;
     showInterestRetainedFields();
     retainedInterestAmountDisplay.textContent = formatCurrency(totalInterestOverTerm);
     netAdvancedAmountDisplay.textContent = formatCurrency(netAdvancedAmount);
@@ -110,5 +112,8 @@ function calculate() {
   element.addEventListener('input', calculate);
   element.addEventListener('change', calculate);
 });
+
+valuationFeeTextDisplay.textContent =
+  `As charged by our Panel Valuer, plus an assessment fee of ${formatCurrency(VALUATION_ASSESSMENT_FEE)}.`;
 
 calculate();
