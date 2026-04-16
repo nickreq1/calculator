@@ -5,7 +5,7 @@ This repository contains a standalone, embeddable loan calculator widget built w
 ## Run locally
 
 1. Clone the repository.
-2. Open `/home/runner/work/calculator/calculator/index.html` in your browser.
+2. Open `index.html` in your browser.
 
 No build step or dependencies are required.
 
@@ -34,6 +34,6 @@ The widget page will be available at your GitHub Pages URL.
 
 Copy these files into your website project and include them:
 
-- `/home/runner/work/calculator/calculator/index.html`
-- `/home/runner/work/calculator/calculator/styles.css`
-- `/home/runner/work/calculator/calculator/loan-calculator.js`
+- `index.html`
+- `styles.css`
+- `loan-calculator.js`

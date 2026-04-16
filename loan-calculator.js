@@ -84,10 +84,11 @@ function calculate() {
       `(Interest ${formatCurrency(monthlyInterest)} + Compliance ${formatCurrency(monthlyCompliance)})`;
     hideInterestRetainedFields();
   } else {
+    // Simple interest (Option A): principal × annual rate × time in years.
     totalInterestOverTerm = amount * (interestRate / 100) * (termMonths / 12);
     const netAdvancedAmount = amount - totalInterestOverTerm;
 
-    repaymentsDisplay.textContent = `Interest retained. No monthly repayment is displayed.`;
+    repaymentsDisplay.textContent = `Interest retained upfront. No monthly repayment required.`;
     showInterestRetainedFields();
     retainedInterestAmountDisplay.textContent = formatCurrency(totalInterestOverTerm);
     netAdvancedAmountDisplay.textContent = formatCurrency(netAdvancedAmount);
