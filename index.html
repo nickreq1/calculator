@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan Calculator Widget</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="widget">
+      <h1>Loan Calculator</h1>
+
+      <section class="card">
+        <h2>Loan Details</h2>
+        <div class="grid">
+          <label for="lender">Lender</label>
+          <input id="lender" type="text" value="Product Lending Pty Ltd" />
+
+          <label for="borrower">Borrower</label>
+          <input id="borrower" type="text" value="Borrower Name" />
+
+          <label for="purpose">Purpose</label>
+          <input id="purpose" type="text" value="Business Purpose" />
+
+          <label for="securityProperty">Security Property</label>
+          <input id="securityProperty" type="text" value="Property Address" />
+
+          <label for="amount">Amount</label>
+          <input id="amount" type="number" min="0.01" step="0.01" value="100000" />
+
+          <label for="termMonths">Term (months)</label>
+          <input id="termMonths" type="number" min="1" step="1" value="24" />
+
+          <label for="repaymentMode">Repayment Mode</label>
+          <select id="repaymentMode">
+            <option value="interestOnly">Interest Only</option>
+            <option value="interestRetained">Interest Retained</option>
+          </select>
+
+          <label>Repayments</label>
+          <div id="repaymentsDisplay" class="output"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Interest Rates &amp; Fees</h2>
+        <div class="grid">
+          <label for="interestRate">Interest Rate (p.a. fixed)</label>
+          <input id="interestRate" type="number" min="0" step="0.01" value="8.45" />
+
+          <label>Compliance Fee (locked)</label>
+          <div class="output">0.0208% per calendar month (applied monthly to loan amount)</div>
+
+          <label>Approval Fee (locked)</label>
+          <div class="output">1.1% of loan amount (upfront)</div>
+
+          <label>Documentation Fee (locked)</label>
+          <div class="output">$3,850.00 (upfront)</div>
+
+          <label>Search Fee (locked)</label>
+          <div class="output">$165.00 (upfront)</div>
+
+          <label>Valuation Fee</label>
+          <div id="valuationFeeText" class="output"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Totals</h2>
+        <div class="grid">
+          <label>Upfront fees total</label>
+          <div id="upfrontFeesTotal" class="output"></div>
+
+          <label>Total compliance fees over term</label>
+          <div id="totalComplianceOverTerm" class="output"></div>
+
+          <label>Total interest over term</label>
+          <div id="totalInterestOverTerm" class="output"></div>
+
+          <label>Total cost over term</label>
+          <div id="totalCostOverTerm" class="output"></div>
+
+          <label id="interestRetainedLabel" class="hidden">Retained interest amount</label>
+          <div id="retainedInterestAmount" class="output hidden"></div>
+
+          <label id="netAdvancedLabel" class="hidden">Net advanced amount (before fees/compliance)</label>
+          <div id="netAdvancedAmount" class="output hidden"></div>
+        </div>
+      </section>
+
+      <p id="errorMessage" class="error" aria-live="polite"></p>
+    </main>
+
+    <script src="loan-calculator.js"></script>
+  </body>
+</html>
