@@ -98,7 +98,7 @@ function calculate() {
       `(Interest ${formatCurrency(monthlyInterestPayment)} + Compliance ${formatCurrency(monthlyComplianceFee)})`;
     hideInterestRetainedFields();
   } else {
-    hideAmountField();
+    showAmountField();
     // Simple interest (Option A): principal × annual rate × time in years.
     totalInterestOverTerm = amount * (interestRate / 100) * (termMonths / 12);
     const netAdvancedAmount = amount - totalInterestOverTerm;
